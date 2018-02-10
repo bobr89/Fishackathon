@@ -39,10 +39,17 @@
         var infowindow = new google.maps.InfoWindow();
 
         var marker, i;
+        var image = {
+          url: 'images/boat.png',
+          // This marker is 20 pixels wide by 32 pixels high.
+          //size: new google.maps.Size(20, 32),
+
+        };
 
         for (i = 0; i < locations.length; i++) {  
           marker = new google.maps.Marker({
             position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+            icon: image,
             map: map
           });
 
@@ -53,7 +60,6 @@
             }
           })(marker, i));
         }
-
         /*var marker = new google.maps.Marker({
           position: uluru,
           map: map
