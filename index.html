@@ -8,7 +8,7 @@
     <style>
        #map {
         height: 800px;
-        width: 100%;
+        width: 70%;
        }
     </style>
   </head>
@@ -16,17 +16,48 @@
     <button type="button" onclick="getInfo()">Click Me!</button>
     <h3>My Google Maps Demo</h3>
     <div id="map"></div>
+    <div id="sideMenu" class="sideMenu">
+        
+    </div>
     <script>
+      var locations = [
+        ['Bondi Beach', -33.890542, 151.274856, 4],
+        ['Coogee Beach', -33.923036, 151.259052, 5],
+        ['Cronulla Beach', -34.028249, 151.157507, 3],
+        ['Manly Beach', -33.80010128657071, 151.28747820854187, 2],
+        ['Maroubra Beach', -33.950198, 151.259302, 1]
+      ];
+
       function initMap() {
-        var uluru = {lat: -25.363, lng: 131.044};
+        var uluru = {lat: -33.92, lng: 151.25};
         var map = new google.maps.Map(document.getElementById('map'), {
           zoom: 4,
-          center: uluru
+          center: uluru,
+          mapTypeId: google.maps.MapTypeId.ROADMAP
         });
-        var marker = new google.maps.Marker({
+
+        var infowindow = new google.maps.InfoWindow();
+
+        var marker, i;
+
+        for (i = 0; i < locations.length; i++) {  
+          marker = new google.maps.Marker({
+            position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+            map: map
+          });
+
+          google.maps.event.addListener(marker, 'click', (function(marker, i) {
+            return function() {
+              infowindow.setContent(locations[i][0]);
+              infowindow.open(map, marker);
+            }
+          })(marker, i));
+        }
+
+        /*var marker = new google.maps.Marker({
           position: uluru,
           map: map
-        });
+        });*/
       }
 
       function getInfo() {
