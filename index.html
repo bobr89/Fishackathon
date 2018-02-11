@@ -6,10 +6,61 @@
     <link rel="stylesheet" href="https://bootswatch.com/cyborg/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="css/stylesheet.css">
     <style>
+    h1{
+      color: white;
+      padding: 5px;
+      font-family: 'Arial'
+    }
        #map {
         height: 800px;
-        width: 70%;
+        width: 82%;
        }
+         .sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    right: 0;
+    background-color: #42b1b7;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+}
+
+.sidenav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #48a0af;
+    display: block;
+    transition: 0.3s;
+}
+
+.sidenav a:hover {
+    color: #f1f1f1;
+}
+
+.sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+}
+
+input[type=checkbox]:hover {
+    box-shadow:0px 0px 10px #1300ff;
+}
+
+label {
+    color:white;
+    font-family: Consolas, Baskerville, 'Segoe UI', sans-serif;
+}
+
+
+
+
     </style>
   </head>
   <body>
@@ -17,6 +68,11 @@
     <h3>My Google Maps Demo</h3>
     <div id="map"></div>
     <div id="sideMenu" class="sideMenu">
+        <div id="mySidenav" class="sidenav">
+    <div id="title">123</div>
+    <div id="details">456</div>
+    <span style="font-size:30px;cursor:pointer" onclick="openNav()"></span>
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
         
     </div>
     <script>
@@ -25,27 +81,27 @@
             '<div id="bodyContent">'+
             '<p><img src=images/popup.png></p>'+
             '</div>'+
-            '</div>', -33.890542, 151.274856, 4, 'Port Sydney'],
+            '</div>', -33.890542, 151.274856, 4, 'Sydney'],
         ['<div id="content">'+
             '<div id="bodyContent">'+
             '<p><img src=images/popup.png></p>'+
             '</div>'+
-            '</div>', -33.923036, 151.259052, 5, 'Port Coogee'],
+            '</div>', -33.923036, 151.259052, 5, 'Coogee'],
         ['<div id="content">'+
             '<div id="bodyContent">'+
             '<p><img src=images/popup.png></p>'+
             '</div>'+
-            '</div>', -34.028249, 151.157507, 3, 'Port Crunulla'],
+            '</div>', -34.028249, 151.157507, 3, 'Crunulla'],
         ['<div id="content">'+
             '<div id="bodyContent">'+
             '<p><img src=images/popup.png></p>'+
             '</div>'+
-            '</div>', -33.80010128657071, 151.28747820854187, 2, 'Port Manly'],
+            '</div>', -33.80010128657071, 151.28747820854187, 2, 'Manly'],
         ['<div id="content">'+
             '<div id="bodyContent">'+
             '<p><img src=images/popup.png></p>'+
             '</div>'+
-            '</div>', -33.950198, 151.259302, 1, 'Port Maroubra']
+            '</div>', -33.950198, 151.259302, 1, 'Maroubra']
       ];
 
       function initMap() {
@@ -189,18 +245,33 @@
             return function() {
               infowindow.setContent(locations[i][0]);
               infowindow.open(map, marker);
+              openNav(locations[i][4]);
             }
           })(marker, i));
 
           google.maps.event.addListener(portMarker, 'click', (function(portMarker, i) {
             return function() {
-              infowindow.setContent(locations[i][4]);
+              infowindow.setContent('Port ' + locations[i][4]);
               infowindow.open(map, portMarker);
             }
           })(portMarker, i));
         }
         
       }
+
+      function openNav(i) {
+    document.getElementById("mySidenav").style.width = "250px";
+    document.getElementById("title").innerHTML = '<h1> Vessel '+ i +'</h1>';
+    
+      document.getElementById("details").innerHTML = '<input type="checkbox" id="other" name="Turned off geolocation?" value="other"><label for="sports">Turned off geolocation?</label><br>'+ 
+      '<input type="checkbox" id="other" name="Tranship involved?" value="other"> <label for="sports">Transship involved?</label><br>' + '<img src=images/vessel_details.png>';
+    
+}
+
+function closeNav() {
+    document.getElementById("mySidenav").style.width = "0";
+}
+
 
       function getInfo() {
          axios.get('https://services.marinetraffic.com/api/portcalls/v:3/4356ce9dcfbef892c0e647084fffc0f23937d8c2/portid:1/timespan:60?protocol=json')
