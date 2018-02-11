@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="https://bootswatch.com/cyborg/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="css/stylesheet.css">
     <style>
+<<<<<<< HEAD
     h1{
       color: white;
       padding: 5px;
@@ -14,6 +15,15 @@
        #map {
         height: 800px;
         width: 82%;
+=======
+      body {
+        background-image: url(images/logo.png);
+
+      }
+       #map {
+        height: 90vh;
+        width: 100%;
+>>>>>>> 44bc6ee6e7b05189d0fd1b150986ff4997e1b717
        }
          .sidenav {
     height: 100%;
@@ -64,8 +74,52 @@ label {
     </style>
   </head>
   <body>
-    <button type="button" onclick="getInfo()">Click Me!</button>
-    <h3>My Google Maps Demo</h3>
+    <nav class="navbar navbar-default" style="background-color: transparent">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <!--<a class="navbar-brand" href="#">Brand</a>-->
+      <img border="0" alt="W3Schools" src="images/logo.png" width="80" height="50">
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li><a href="#">Vessel Tracking</a></li>
+        <li><a href="#">Port Tracking</a></li>
+        <li class="Details">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Options <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#"></a></li>
+            <li><a href="#">Search Vessel</a></li>
+            <li><a href="#">Search Port</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#">Ports near me</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#">Excepted Arrivals</a></li>
+          </ul>
+        </li>
+      </ul>
+      <form class="navbar-form navbar-left">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Search">
+        </div>
+        <button type="submit" class="btn btn-default">Submit</button>
+      </form>
+      <ul class="nav navbar-nav navbar-right">
+        <li style="margin-right: 10px"><a href="#">Report</a></li>
+
+        <a href="login.html"><img alt="W3Schools" src="images/profile.png" width="20" height="25" style="margin-top: 10px; margin-right: 80px"></img></a>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
     <div id="map"></div>
     <div id="sideMenu" class="sideMenu">
         <div id="mySidenav" class="sidenav">
@@ -103,7 +157,6 @@ label {
             '</div>'+
             '</div>', -33.950198, 151.259302, 1, 'Maroubra']
       ];
-
       function initMap() {
         var uluru = {lat: -33.958249, lng: 151.18747820854187};
         var map = new google.maps.Map(document.getElementById('map'), {
@@ -191,20 +244,14 @@ label {
           ],
           mapTypeId: google.maps.MapTypeId.ROADMAP
         });
-
-
         var infowindow = new google.maps.InfoWindow();
-
         var marker, i, cityCircle;
         var image = {
           url: 'images/boat.png',
           // This marker is 20 pixels wide by 32 pixels high.
           //size: new google.maps.Size(40, 40),
-
         };
-
     var reservemap = {
-
         reserve1: {
           center: {lat: -34.314, lng: 151.08747820854187},
           population: 15405837
@@ -213,9 +260,7 @@ label {
           center: {lat: -33.5, lng: 151.18747820854187},
           population: 7405837
         }
-
       };
-
         for (i = 0; i < locations.length; i++) {  
           marker = new google.maps.Marker({
             position: new google.maps.LatLng(locations[i][1]+0.005, locations[i][2]+0.08*i),
@@ -226,7 +271,6 @@ label {
             position: new google.maps.LatLng(locations[i][1], locations[i][2]),
             map: map
           });
-
          for (var city in reservemap) {
           // Add the circle for this city to the map.
           var cityCircle = new google.maps.Circle({
@@ -240,7 +284,6 @@ label {
             radius: Math.sqrt(reservemap[city].population) *5
           });
         }
-
           google.maps.event.addListener(marker, 'click', (function(marker, i) {
             return function() {
               infowindow.setContent(locations[i][0]);
@@ -248,7 +291,6 @@ label {
               openNav(locations[i][4]);
             }
           })(marker, i));
-
           google.maps.event.addListener(portMarker, 'click', (function(portMarker, i) {
             return function() {
               infowindow.setContent('Port ' + locations[i][4]);
@@ -258,6 +300,7 @@ label {
         }
         
       }
+<<<<<<< HEAD
 
       function openNav(i) {
     document.getElementById("mySidenav").style.width = "250px";
@@ -273,12 +316,13 @@ function closeNav() {
 }
 
 
+=======
+>>>>>>> 44bc6ee6e7b05189d0fd1b150986ff4997e1b717
       function getInfo() {
          axios.get('https://services.marinetraffic.com/api/portcalls/v:3/4356ce9dcfbef892c0e647084fffc0f23937d8c2/portid:1/timespan:60?protocol=json')
           .then(function(response){
               console.log(response);
           });
-
       }
     </script>
     <script async defer
@@ -286,5 +330,13 @@ function closeNav() {
     </script>
     
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   </body>
 </html>
