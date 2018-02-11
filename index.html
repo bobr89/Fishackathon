@@ -6,16 +6,12 @@
     <link rel="stylesheet" href="https://bootswatch.com/cyborg/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="css/stylesheet.css">
     <style>
-<<<<<<< HEAD
-    h1{
-      color: white;
-      padding: 5px;
-      font-family: 'Arial'
-    }
-       #map {
-        height: 800px;
-        width: 82%;
-=======
+      h1{
+        color: white;
+        padding: 5px;
+        font-family: 'Arial'
+      }
+
       body {
         background-image: url(images/logo.png);
 
@@ -23,7 +19,6 @@
        #map {
         height: 90vh;
         width: 100%;
->>>>>>> 44bc6ee6e7b05189d0fd1b150986ff4997e1b717
        }
          .sidenav {
     height: 100%;
@@ -300,24 +295,19 @@ label {
         }
         
       }
-<<<<<<< HEAD
 
       function openNav(i) {
-    document.getElementById("mySidenav").style.width = "250px";
-    document.getElementById("title").innerHTML = '<h1> Vessel '+ i +'</h1>';
-    
-      document.getElementById("details").innerHTML = '<input type="checkbox" id="other" name="Turned off geolocation?" value="other"><label for="sports">Turned off geolocation?</label><br>'+ 
-      '<input type="checkbox" id="other" name="Tranship involved?" value="other"> <label for="sports">Transship involved?</label><br>' + '<img src=images/vessel_details.png>';
-    
-}
+          document.getElementById("mySidenav").style.width = "250px";
+          document.getElementById("title").innerHTML = '<h1> Vessel '+ i +'</h1>';
 
-function closeNav() {
-    document.getElementById("mySidenav").style.width = "0";
-}
+            document.getElementById("details").innerHTML = '<input type="checkbox" id="other" name="Turned off geolocation?" value="other"><label for="sports">Turned off geolocation?</label><br>'+ 
+            '<input type="checkbox" id="other" name="Tranship involved?" value="other"> <label for="sports">Transship involved?</label><br>' + '<img src=images/vessel_details.png>';
 
+      }
 
-=======
->>>>>>> 44bc6ee6e7b05189d0fd1b150986ff4997e1b717
+      function closeNav() {
+          document.getElementById("mySidenav").style.width = "0";
+      }
       function getInfo() {
          axios.get('https://services.marinetraffic.com/api/portcalls/v:3/4356ce9dcfbef892c0e647084fffc0f23937d8c2/portid:1/timespan:60?protocol=json')
           .then(function(response){
